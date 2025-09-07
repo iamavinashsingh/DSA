@@ -1,0 +1,80 @@
+Problem of the Day: Find n integers that sum to 0
+
+1/
+We’re asked:
+👉 Given n, build an array of size n
+👉 All numbers must be unique
+👉 Their sum = 0
+
+Sounds like balancing a see-saw 🎯. If left has +ve numbers, right must balance with -ve.
+
+2/
+Naive thought: Just take pairs like (+1, -1), (+2, -2)… until we fill n.
+
+Works perfectly for even n.
+
+But odd n leaves one number unpaired 😅.
+
+So what to do? Add 0! Problem solved ✅.
+
+3/
+But in my solution, I did it in one clean math trick 👇
+
+Fill array with 1, 2, 3… n-1
+
+Then calculate the first element so the whole sum = 0
+
+That formula is:
+
+res[0] = n * (1 - n) / 2;
+
+
+This ensures total = 0 every time.
+
+4/
+💻 My C++ solution:
+
+vector<int> sumZero(int n) {
+    vector<int> res(n);
+    res[0] = n * (1 - n) / 2;
+    for (int i = 1; i < n; ++i)
+        res[i] = i;
+    return res;
+}
+
+
+5/
+✨ Why this works?
+
+1 + 2 + … + (n-1) = (n-1)*n/2
+
+So just put the negative of that at index 0.
+
+Balanced! 🎯
+
+6/
+⏱️ Complexity:
+
+Time: O(n) (simple loop)
+
+Space: O(n)
+
+Super efficient and mathy ✅
+
+7/
+🌸 Takeaway:
+Sometimes DSA problems are less about heavy logic and more about spotting a neat math pattern.
+This one is a perfect example 💡
+
+```cpp
+  class Solution {
+public:
+    vector<int> sumZero(int n) {
+        vector<int> res(n);
+        res[0] = n * (1 - n) / 2;
+        for (int i = 1; i < n; ++i)
+            res[i] = i;
+        return res;
+    }
+};
+```
